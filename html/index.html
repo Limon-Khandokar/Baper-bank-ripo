@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking-2</title>
+    <!-- //tailwand link -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <header>
+        <h3 class="text-center text-5xl mt-16 text-gray-500 font-semibold">Let's get some <span
+                class="text-green-300">Moooooney!!</span>
+        </h3>
+    </header>
+    <main>
+        <section>
+            <div class="grid grid-cols-3 gap-4 w-3/4 mt-8 mx-auto">
+                <div class="text-white bg-blue-300 rounded p-10">
+                    <h3 class="text-2xl">Deposit</h3>
+                    <h4 class="text-4xl">$<span id="deposit-total">00</span></h4>
+                </div>
+                <div class="text-white bg-green-300 rounded p-10">
+                    <h3 class="text-2xl">Withdraw</h3>
+                    <h4 class="text-4xl">$<span id="withdraw-total">00</span></h4>
+                </div>
+                <div class="text-white bg-yellow-300 rounded p-10">
+                    <h3 class="text-2xl">Balance</h3>
+                    <h4 class="text-4xl">$<span id="balance-total">10000</span></h4>
+                </div>
+            </div>
+        </section>
+        <section class="mt-6">
+            <div class=" grid grid-cols-2 gap-4 w-3/4 mx-auto ">
+
+                <div class="bg-purple-300 p-8 rounded">
+                    <h3 class="text-white font-medium text-2xl">Please Deposit</h3>
+                    <input id="deposit-input" class="border-2 rounded border-gray-400 w-3/4 " type="text"
+                        placeholder="$amount you want to deopsit">
+                    <br>
+                    <button id="deposit-btn"
+                        class="text-white bg-yellow-500 mt-8 p-1 rounded font-semibold">Deposit</button>
+                </div>
+                <!-- withdraw  -->
+                <div class="bg-pink-300 p-8 rounded">
+                    <h3 class="text-white font-medium text-2xl">Please Withdraw</h3>
+                    <input id="withdraw-input" class="border-2 rounded border-gray-400 w-3/4 " type="text"
+                        placeholder="$amount you want to withdraw">
+                    <br>
+                    <button id="withdraw-btn"
+                        class="text-white bg-yellow-500 mt-8 p-1 rounded font-semibold">Withdraw</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.getElementById('deposit-btn').addEventListener('click', function () {
+            const depositField = document.getElementById('deposit-input');
+            const addDepositAmountText = depositField.value;
+            const addDepositAmount = parseFloat(addDepositAmountText);
+
+            // update deposit total 
+            const depositTotal = document.getElementById('deposit-total');
+            const previousDepositTotalText = depositTotal.innerText;
+            const previousDepositTotal = parseFloat(previousDepositTotalText);
+            const newDepositTotal = previousDepositTotal + addDepositAmount;
+            depositTotal.innerText = newDepositTotal;
+            // clear input field 
+            depositField.value = '';
+            // update balance 
+            const balanceTotal = document.getElementById('balance-total');
+            const previousBalanceTotalText = balanceTotal.innerText;
+            const previousBalanceTotal = parseFloat(previousBalanceTotalText);
+            const newBalanceTotal = previousBalanceTotal + addDepositAmount;
+            balanceTotal.innerText = newBalanceTotal;
+        });
+        // withdraw update 
+        document.getElementById('withdraw-btn').addEventListener('click', function () {
+            const withdrawField = document.getElementById('withdraw-input');
+            const newWithdrawAmountText = withdrawField.value;
+            const newWithdrawAmount = parseFloat(newWithdrawAmountText);
+            // update withdraw total 
+            const withdrawTotal = document.getElementById('withdraw-total');
+            const previousWithdrawTotalText = withdrawTotal.innerText;
+            const previousWithdrawTotal = parseFloat(previousWithdrawTotalText);
+            const newWithdrawTotal = previousWithdrawTotal + newWithdrawAmount;
+            withdrawTotal.innerText = newWithdrawTotal;
+            // clear withdraw input 
+            withdrawField.value = '';
+            // balance update 
+            // update balance 
+            const balanceTotal = document.getElementById('balance-total');
+            const previousBalanceTotalText = balanceTotal.innerText;
+            const previousBalanceTotal = parseFloat(previousBalanceTotalText);
+            const newBalanceTotal = previousBalanceTotal - newWithdrawAmount;
+            balanceTotal.innerText = newBalanceTotal;
+        })
+
+
+
+    </script>
+</body>
+
+</html>
